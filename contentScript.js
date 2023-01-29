@@ -36,7 +36,6 @@
       youtubeLeftControls =
         document.getElementsByClassName('ytp-right-controls')[0]
       youtubePlayer = document.getElementsByClassName('video-stream')[0]
-
       youtubeLeftControls.appendChild(bookmarkBtn)
       bookmarkBtn.addEventListener('click', addNewBookMarkEventHandler)
     }
