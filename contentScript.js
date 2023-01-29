@@ -1,6 +1,6 @@
 (() => {
   let youtubeLeftControls, youtubePlayer
-  let = ""
+  let currentVideo= ''
   chrome.runtime.onMessage.addListener((obj, sender, response) => {
     const { type, value, videoId } = obj
 
@@ -9,4 +9,23 @@
       newVideoLoaded()
     }
   })
-})
+
+  const newVideoLoaded = () => {
+    const bookmarkBtnExists = document.getElementsByClassName('bookmark-btn')[0]
+
+    if (!bookmarkBtnExists) {
+      const bookmarkBtn = document.createElement('img')
+
+      bookmarkBtn.src = chrome.runtime.getURL('assets/bookmark.png')
+      bookmarkBtn.className = 'ytp-button ' + 'bookmark-btn'
+      bookmarkBtn.title = 'Click to bookmark current timestamp'
+
+      youtubeLeftControls = document.getElementsByClassName('ytp-right-controls')[0]
+      youtubePlayer = document.getElementsByClassName('video-stream')[0]
+
+      youtubeLeftControls.appendChild(bookmarkBtn)
+    }
+  }
+
+  newVideoLoaded()
+})()
